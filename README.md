@@ -1,9 +1,10 @@
-<section align="center">
+<p align="center">
+
 <img src="./static/icon.png" width=64>
 
 # ML Lens
 
-</section>
+</p>
 
 
 
