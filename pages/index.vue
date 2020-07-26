@@ -31,9 +31,16 @@
         </a-step>
       </a-steps>
     </div>
+    <div class="settings">
+      <a-button type="dashed" @click="gotoSettings">
+        <a-icon type="setting" /> Settings
+      </a-button>
+    </div>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+
 function getBase64(img, callback) {
   const reader = new FileReader()
   reader.addEventListener('load', () => callback(reader.result))
@@ -46,6 +53,9 @@ export default {
       imageUrl: '',
       currentStep: 0,
     }
+  },
+  computed: {
+    ...mapState('settings', ['baseUrl']),
   },
   methods: {
     handleChange(info) {
@@ -68,7 +78,7 @@ export default {
       const { onSuccess, onError, file, onProgress } = options
       onProgress(50)
       return new Promise((resolve, reject) => {
-        const uploadUrl = 'http://192.168.31.98:5000/image'
+        const uploadUrl = this.baseUrl + 'image'
         const formData = new FormData()
         formData.append('image', file)
         this.$axios
@@ -106,7 +116,7 @@ export default {
           // JSX support
           content: (
             <div>
-              <p>{res.join('')}</p>
+              <p style={{ fontSize: `2em` }}>{res.join('')}</p>
             </div>
           ),
         })
@@ -121,6 +131,9 @@ export default {
           ),
         })
       }
+    },
+    gotoSettings() {
+      this.$router.push('/settings')
     },
   },
 }
@@ -154,5 +167,11 @@ export default {
   padding: 10px 20px 10px 20px;
   max-width: 600px;
   margin: 0 auto;
+}
+.settings {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
