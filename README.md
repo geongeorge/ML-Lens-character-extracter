@@ -6,7 +6,10 @@
 
 </p>
 
-<p>Url: [ml-lens](https://ml-lens.vercel.app/)</p>
+Url: [ml-lens](https://ml-lens.vercel.app/)
+
+Flask Server with model: 
+[Backend](https://github.com/geongeorge/Final-Project-Server)
 
 ## Build Setup
 
